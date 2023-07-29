@@ -13,8 +13,8 @@ namespace Feedback
     {
         static void Main(string[] args)
         {
-            Menucs obj = new Menucs();
-            obj.Dowhilemenu();
+            //Menucs obj = new Menucs();
+            //obj.Dowhilemenu();
         }
     }
 }

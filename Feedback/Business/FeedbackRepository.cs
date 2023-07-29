@@ -9,6 +9,7 @@ using iv= Feedback.Models;
 
 
 
+
 namespace Feedbacks.Business
 {
      public class FeedbackRepository
@@ -19,13 +20,13 @@ namespace Feedbacks.Business
 
             public FeedbackRepository ()
             {
-                connectionString = @"Data source=ANIYAAN-1006;Initial catalog=Feedback;User Id=Anaiyaan;Password=Anaiyaan@123";
+                connectionString = @"Data source=ANIYAAN-1006;Initial catalog=CustomerFeedback;User Id=Anaiyaan;Password=Anaiyaan@123";
             }
 
 
-        public iv.Feedback method()
+        public iv.FeedbackModel method()
         {
-            iv.Feedback obj1 = new iv.Feedback();
+            iv.FeedbackModel obj1 = new iv.FeedbackModel();
             Console.WriteLine("Enter CustomerName");
             obj1.Customername = Console.ReadLine();
             Console.WriteLine("Enter Comments");
@@ -39,7 +40,14 @@ namespace Feedbacks.Business
             return obj1;
 
         }
-        public void insert(iv.Feedback a)
+
+        
+        /*public IEnumerable<iv.FeedbackModel> GetAllregistration()
+        {
+            throw new NotImplementedException();
+        }*/
+
+        public void insert(iv.FeedbackModel a)
         {
                 try
                 {
@@ -47,7 +55,7 @@ namespace Feedbacks.Business
                     SqlConnection con = new SqlConnection(connectionString);
 
                     con.Open();
-                    con.Execute($"exec insertFeedback '{a.Customername}','{a.Comments}','{a.ProductName}',{a.Rating},'{a.Createddate}' ");
+                    con.Execute($"exec insertFeedback '{a.Customername}','{a.Comments}','{a.ProductName}',{a.Rating},'{Convert.ToDateTime(a.Createddate).ToString("MM-dd-yyyy")}' ");
 
 
 
@@ -63,30 +71,24 @@ namespace Feedbacks.Business
                     throw ex;
                 }
         }
-            public List<iv.Feedback> Select()
+       
+
+        
+            public List<iv.FeedbackModel> Select()
             {
                 try
                 {
-                    List<iv.Feedback> con = new List<iv.Feedback>();
+                    List<iv.FeedbackModel> con = new List<iv.FeedbackModel>();
 
                     SqlConnection connection = new SqlConnection(connectionString);
 
                     connection.Open();
-                    con = connection.Query<iv.Feedback>("exec selectFeedback; ", connectionString).ToList();
-
-                    // con = connection.Query<details>("exec selectFeedback").ToList();
-                    connection.Close();
-
-                    foreach (var constrai in con)
-                    {
-                        Console.WriteLine($"Customername ->{constrai.Customername}      Comments ->{constrai.Comments}   ProductName ->{constrai.ProductName}   Rating ->{constrai.Rating}  date ->{constrai.Createddate} ");
-                        Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------");
-
-                    }
+                    con = connection.Query<iv.FeedbackModel>("exec selectFeedback; ").ToList();
 
                     return con;
 
                 }
+
                 catch (Exception ex)
                 {
                     throw ex;
@@ -94,6 +96,83 @@ namespace Feedbacks.Business
             }
 
 
-     }
-    
+
+
+        public List<iv.FeedbackModel> Select(string Customername)
+        {
+            try
+            {
+                List<iv.FeedbackModel> con = new List<iv.FeedbackModel>();
+
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                connection.Open();
+                con = connection.Query<iv.FeedbackModel>($"exec selectFeedbackID {Customername}; ", connectionString).ToList();
+
+               
+
+                return con;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void deletesp(string Customerid)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connectionString);
+                // Console.WriteLine("enter the first name to delete the whole record");        //dynamic value 
+                // string del = Convert.ToString(Console.ReadLine());
+                con.Open();
+
+                con.Execute($"delete from Feedback where Customername ='{Customerid}' ");
+
+                con.Close();
+
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+       
+        public void updatesp(iv.FeedbackModel e)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connectionString);
+                
+                con.Open();
+                con.Execute($" update Feedback set Customerid ='{e.Customerid}' where  ProductName='{e.ProductName}'");
+                con.Close();
+
+            }
+            catch (SqlException )
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+    }
+
+   
+
 }
+
+
