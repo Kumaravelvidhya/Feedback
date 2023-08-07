@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Feedback.Models.FeedbackModel>
+
+@{
+    ViewData["Title"] = "Select";
+}
+
+<h1>Insert</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customerid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Createddate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customerid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Createddate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { Customername = item.Customername }) |
+                @Html.ActionLink("Details", "Details", new { Customername = item.Customername }) |
+                @Html.ActionLink("Delete", "Delete", new { Customerid = item.Customerid })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

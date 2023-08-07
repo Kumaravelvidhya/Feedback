@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback", "Feedback\Feedback.csproj", "{69CA5BC8-B9BD-4FC0-AB53-BA114F000B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbacksAPI", "FeedbacksAPI\FeedbacksAPI.csproj", "{AA38FFBE-3C6E-4C83-8584-FC49C0AD5D60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedbacksAPI", "FeedbacksAPI\FeedbacksAPI.csproj", "{AA38FFBE-3C6E-4C83-8584-FC49C0AD5D60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackMVC", "FeedbackMVC\FeedbackMVC.csproj", "{1EFA8656-45B4-43A1-8B73-CDBD9AB1171D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AA38FFBE-3C6E-4C83-8584-FC49C0AD5D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA38FFBE-3C6E-4C83-8584-FC49C0AD5D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA38FFBE-3C6E-4C83-8584-FC49C0AD5D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EFA8656-45B4-43A1-8B73-CDBD9AB1171D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EFA8656-45B4-43A1-8B73-CDBD9AB1171D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EFA8656-45B4-43A1-8B73-CDBD9AB1171D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EFA8656-45B4-43A1-8B73-CDBD9AB1171D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

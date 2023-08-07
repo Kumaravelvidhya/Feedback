@@ -119,7 +119,7 @@ namespace Feedbacks.Business
                 throw ex;
             }
         }
-        public void deletesp(string Customerid)
+        public void deletesp(int Customerid)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace Feedbacks.Business
                 // string del = Convert.ToString(Console.ReadLine());
                 con.Open();
 
-                con.Execute($"delete from Feedback where Customername ='{Customerid}' ");
+                con.Execute($"exec deleteFeedback'{Customerid}' ");
 
                 con.Close();
 
@@ -155,13 +155,34 @@ namespace Feedbacks.Business
                 SqlConnection con = new SqlConnection(connectionString);
                 
                 con.Open();
-                con.Execute($" update Feedback set Customerid ='{e.Customerid}' where  ProductName='{e.ProductName}'");
+                con.Execute($" exec updatesFeedback '{e.Customerid}','{e.Customername}','{e.Comments}','{e.ProductName}','{e.Rating}','{e.Createddate}'");
                 con.Close();
 
             }
             catch (SqlException )
             {
                 throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public iv.FeedbackModel Selectwithid(int CustomerId)
+        {
+            try
+            {
+                
+
+                var connection = new SqlConnection(connectionString);
+
+                connection.Open();
+               var conn = connection.QueryFirst<iv.FeedbackModel>($"exec selectFeedbackname {CustomerId}");
+
+                connection.Close();
+
+                return conn;
+
             }
             catch (Exception ex)
             {

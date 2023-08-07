@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace FeedbacksAPI.Controllers
 
         // DELETE api/<FeedbacksController>/5
         [HttpDelete("{Customerid}")]
-        public void Delete(string Customerid)
+        public void Delete(int Customerid)
         {
             
           obj.deletesp(Customerid) ;
